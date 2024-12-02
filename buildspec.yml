@@ -14,5 +14,6 @@ phases:
       - aws s3 cp --recursive ./out s3://$BUCKET_NAME/
 artifacts:
   files:
+    - appspec.yml
     - "**/*"
   base-directry: "out"
