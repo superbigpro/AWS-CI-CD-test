@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Installing dependencies ...
+      - npm ci
+  build:
+    commands:
+      - echo Build Started on `date`
+      - npm run build
+  post_build:
+    commands:
+      - aws s3 cp --recursive ./out s3://$BUCKET_NAME/
+artifacts:
+  files:
+    - "**/*"
+  base-directry: "out"
