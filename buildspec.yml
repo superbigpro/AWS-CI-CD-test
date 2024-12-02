@@ -11,9 +11,10 @@ phases:
       - npm run build
   post_build:
     commands:
+      - echo Uploading artifacts to S3...
       - aws s3 cp --recursive ./out s3://$BUCKET_NAME/
 artifacts:
   files:
     - appspec.yml
     - "**/*"
-  base-directry: "out"
+  base-directory: "out"
